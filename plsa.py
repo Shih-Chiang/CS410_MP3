@@ -304,7 +304,7 @@ class Corpus(object):
 
 
 def main():
-    documents_path = 'data/test.txt'
+    documents_path = 'data/DBLP.txt'
     corpus = Corpus(documents_path)  # instantiate corpus
     corpus.build_corpus()
     corpus.build_vocabulary()
@@ -312,7 +312,7 @@ def main():
     print("Vocabulary size:" + str(len(corpus.vocabulary)))
     print("Number of documents:" + str(len(corpus.documents)))
     number_of_topics = 2
-    max_iterations = 300
+    max_iterations = 50
     epsilon = 0.001
     corpus.plsa(number_of_topics, max_iterations, epsilon)
 
