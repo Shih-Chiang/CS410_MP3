@@ -168,11 +168,15 @@ class Corpus(object):
                         #print(self.document_topic_prob[d][z], self.topic_word_prob[z][w])
                     self.topic_prob[d][z][w]=(self.document_topic_prob[d][z]*self.topic_word_prob[z][w])
                     cnt+=self.topic_prob[d][z][w]
+                if cnt == 0:
+                    for z in range(number_of_topics):
+                        self.topic_prob[d][z][w] = 0
                 # if cnt == 0:
                     #print("cnt")
                     #print(cnt)
                 #self.topic_prob[d,:,w] = self.topic_prob[d,:,w]/(cnt if cnt > 0 else 0.000001)
-                self.topic_prob[d,:,w] = self.topic_prob[d,:,w]/cnt
+                else:
+                    self.topic_prob[d][z][w] = self.topic_prob[d][z][w]/cnt
         #print(self.topic_prob)
                     
 
