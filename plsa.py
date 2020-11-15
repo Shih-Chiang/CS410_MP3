@@ -171,7 +171,8 @@ class Corpus(object):
                 # if cnt == 0:
                     #print("cnt")
                     #print(cnt)
-                self.topic_prob[d,:,w] = self.topic_prob[d,:,w]/(cnt if cnt > 0 else 0.000001)
+                #self.topic_prob[d,:,w] = self.topic_prob[d,:,w]/(cnt if cnt > 0 else 0.000001)
+                self.topic_prob[d,:,w] = self.topic_prob[d,:,w]/cnt
         #print(self.topic_prob)
                     
 
@@ -221,7 +222,7 @@ class Corpus(object):
                 self.document_topic_prob[d][z]=cnt
             #print(d)
         self.document_topic_prob=normalize(self.document_topic_prob)
-        print(self.document_topic_prob)
+        #print(self.document_topic_prob)
         #print(self.document_topic_prob)
         #np.savetxt('doc_topic_prob2.txt',self.document_topic_prob)
         #print(self.document_topic_prob)
