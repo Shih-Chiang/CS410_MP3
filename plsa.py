@@ -168,15 +168,17 @@ class Corpus(object):
                         #print(self.document_topic_prob[d][z], self.topic_word_prob[z][w])
                     self.topic_prob[d][z][w]=(self.document_topic_prob[d][z]*self.topic_word_prob[z][w])
                     cnt+=self.topic_prob[d][z][w]
-                if cnt == 0:
-                    for z in range(number_of_topics):
-                        self.topic_prob[d][z][w] = 0
+                #if cnt == 0:
+                    #for z in range(number_of_topics):
+                        #self.topic_prob[d][z][w] = 0
                 # if cnt == 0:
                     #print("cnt")
                     #print(cnt)
                 #self.topic_prob[d,:,w] = self.topic_prob[d,:,w]/(cnt if cnt > 0 else 0.000001)
-                else:
-                    self.topic_prob[d][z][w] = self.topic_prob[d][z][w]/cnt
+                #else:
+                    #self.topic_prob[d][z][w] = self.topic_prob[d][z][w]/cnt
+                if cnt>0:
+                    self.topic_prob[d,:,w] = self.topic_prob[d,:,w]/cnt
         #print(self.topic_prob)
                     
 
@@ -246,6 +248,7 @@ class Corpus(object):
         # your code here
         # ############################
         a=0
+        lcnt=0
         for d in range(self.number_of_documents):
             for w in range(self.vocabulary_size):
                 cnt=0
@@ -255,7 +258,9 @@ class Corpus(object):
                 # print("cnt")
                 # print(cnt)
                 # print("\n")
-                lcnt=log(cnt if cnt > 0 else 0.000001)
+                if cnt>0:
+                    lcnt=log(cnt)
+                #lcnt=log(cnt if cnt > 0 else 0.000001)
                 a+=self.term_doc_matrix[d][w]*lcnt
         self.likelihoods.append(a)
         return a
