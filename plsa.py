@@ -163,14 +163,14 @@ class Corpus(object):
                 cnt=0
                 for z in range(number_of_topics):
                     #den=sum(document_topic_prob[d][z]*topic_word_prob[z][w])
-                    if (d==6):
-                        print("iteration: ", z, self.vocabulary[w])
-                        print(self.document_topic_prob[d][z], self.topic_word_prob[z][w])
+                    #if (d==6):
+                        #print("iteration: ", z, self.vocabulary[w])
+                        #print(self.document_topic_prob[d][z], self.topic_word_prob[z][w])
                     self.topic_prob[d][z][w]=(self.document_topic_prob[d][z]*self.topic_word_prob[z][w])
                     cnt+=self.topic_prob[d][z][w]
                 # if cnt == 0:
-                    print("cnt")
-                    print(cnt)
+                    #print("cnt")
+                    #print(cnt)
                 self.topic_prob[d,:,w] = self.topic_prob[d,:,w]/(cnt if cnt > 0 else 0.000001)
         #print(self.topic_prob)
                     
@@ -297,7 +297,7 @@ class Corpus(object):
 
 
 def main():
-    documents_path = 'data/test_trial.txt'
+    documents_path = 'data/test.txt'
     corpus = Corpus(documents_path)  # instantiate corpus
     corpus.build_corpus()
     corpus.build_vocabulary()
