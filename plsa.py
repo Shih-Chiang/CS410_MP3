@@ -216,8 +216,12 @@ class Corpus(object):
                     #self.document_topic_prob[d][z]=self.topic_prob[d][z][w]*self.term_doc_matrix[d][w]
                     cnt+=self.topic_prob[d][z][w]*self.term_doc_matrix[d][w]
                 self.document_topic_prob[d][z]=cnt
+            #print(d)
         self.document_topic_prob=normalize(self.document_topic_prob)
         #print(self.document_topic_prob)
+        #np.savetxt('doc_topic_prob2.txt',self.document_topic_prob)
+        #print(self.document_topic_prob)
+        #print("**")
 
         #pass    # REMOVE THIS
 
@@ -289,7 +293,7 @@ class Corpus(object):
 
 
 def main():
-    documents_path = 'data/DBLP.txt'
+    documents_path = 'data/test_trial.txt'
     corpus = Corpus(documents_path)  # instantiate corpus
     corpus.build_corpus()
     corpus.build_vocabulary()

@@ -1,0 +1,5 @@
+0   mount mount rainier seattle 
+0	seattle mount seattle rainier 
+1	willis tower willis willis 
+1	willis mount tower tower 
+1	willis chicago tower willis
