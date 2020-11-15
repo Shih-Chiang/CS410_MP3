@@ -159,9 +159,9 @@ class Corpus(object):
         #self.topic_prob = [[[0]*self.number_of_documents]*self.vocabulary_size]*number_of_topics
         number_of_topics=self.topic_prob.shape[1]
         for d in range(self.number_of_documents):
-            for z in range(number_of_topics):
+            for w in range(self.vocabulary_size):
                 cnt=0
-                for w in range(self.vocabulary_size):
+                for z in range(number_of_topics):
                     #den=sum(document_topic_prob[d][z]*topic_word_prob[z][w])
                     #if (d==6):
                         #print("iteration: ", z, self.vocabulary[w])
@@ -177,8 +177,8 @@ class Corpus(object):
                 #self.topic_prob[d,:,w] = self.topic_prob[d,:,w]/(cnt if cnt > 0 else 0.000001)
                 #else:
                     #self.topic_prob[d][z][w] = self.topic_prob[d][z][w]/cnt
-                #if cnt>0:
-                self.topic_prob[d,:,w] = self.topic_prob[d,:,w]/cnt
+                if cnt>0:
+                    self.topic_prob[d,:,w] = self.topic_prob[d,:,w]/cnt
         #print(self.topic_prob)
                     
 
