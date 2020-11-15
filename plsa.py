@@ -248,7 +248,6 @@ class Corpus(object):
         # your code here
         # ############################
         a=0
-        lcnt=0
         for d in range(self.number_of_documents):
             for w in range(self.vocabulary_size):
                 cnt=0
@@ -258,9 +257,7 @@ class Corpus(object):
                 # print("cnt")
                 # print(cnt)
                 # print("\n")
-                if cnt>0:
-                    lcnt=log(cnt)
-                #lcnt=log(cnt if cnt > 0 else 0.000001)
+                lcnt=log(cnt if cnt > 0 else 0.000001)
                 a+=self.term_doc_matrix[d][w]*lcnt
         self.likelihoods.append(a)
         return a
