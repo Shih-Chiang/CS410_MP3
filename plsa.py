@@ -101,7 +101,8 @@ class Corpus(object):
 
         #self.term_doc_matrix = np.zeros([self.number_of_documents, self.vocabulary_size], dtype=np.float)
         rows, cols = (self.number_of_documents, self.vocabulary_size) 
-        self.term_doc_matrix = [[0]*cols]*rows
+        #self.term_doc_matrix = [[0]*cols]*rows
+        self.term_doc_matrix=np.zeros((self.number_of_documents, self.vocabulary_size))
 
         for i in range(self.number_of_documents):
             for j in range(self.vocabulary_size):
@@ -177,8 +178,9 @@ class Corpus(object):
                 #self.topic_prob[d,:,w] = self.topic_prob[d,:,w]/(cnt if cnt > 0 else 0.000001)
                 #else:
                     #self.topic_prob[d][z][w] = self.topic_prob[d][z][w]/cnt
-                if cnt>0:
-                    self.topic_prob[d,:,w] = self.topic_prob[d,:,w]/cnt
+                #if cnt>0:
+                    #self.topic_prob[d,:,w] = self.topic_prob[d,:,w]/cnt
+                self.topic_prob[d,:,w] = self.topic_prob[d,:,w]/cnt
         #print(self.topic_prob)
                     
 
@@ -257,7 +259,8 @@ class Corpus(object):
                 # print("cnt")
                 # print(cnt)
                 # print("\n")
-                lcnt=log(cnt if cnt > 0 else 0.000001)
+                #lcnt=log(cnt if cnt > 0 else 0.000001)
+                lcnt=log(cnt)
                 a+=self.term_doc_matrix[d][w]*lcnt
         self.likelihoods.append(a)
         return a
@@ -304,7 +307,7 @@ class Corpus(object):
 
 
 def main():
-    documents_path = 'data/DBLP.txt'
+    documents_path = 'data/test.txt'
     corpus = Corpus(documents_path)  # instantiate corpus
     corpus.build_corpus()
     corpus.build_vocabulary()
